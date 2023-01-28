@@ -47,6 +47,20 @@ const createBook = async function(req, res){
         if(regForDate(releasedAt)== false) return res.status(400).send({status:false, message:"Invalid Date Format Takes YYYY-MM-DD"})
 
 
+        // let files = req.files
+        // if (files && files.length > 0) {
+        //   // console.log(files.length)
+
+        //     let uploadedFileURL = await uploadFile(files[0])
+            
+        //     const uniqueCover = await bookModel.findOne({ bookCover: uploadedFileURL })
+        //     if (uniqueCover) return res.status(400).send({ status: false, message: "BookCover Already Exist." })
+        //     data['bookCover'] = uploadedFileURL
+        // }
+        // else {
+        //     return res.status(400).send({ msg: "No File Found!" })
+        // }
+
         const bookData = await bookModel.create(data)
         res.status(201).send({status:true, message:bookData})
     }catch(err){
@@ -238,6 +252,14 @@ module.exports.createBook= createBook
 module.exports.getBookbyId= getBookbyId
 module.exports.getBookDetails= getBookDetails
 module.exports.deleteBooksById=deleteBooksById
+
+
+
+// // let ISBN = req.body.ISBN
+
+// let data = await bookModel.find({ISBN: ISBN})
+// if (data){return res.send({status: false, msg: "given ISBN is already present"})}
+// else
 
 
 
